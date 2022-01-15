@@ -8,25 +8,62 @@
 </head>
 <body class="root">
     <div class="page">
-        <header>
-            <a href="#"><img class="header__logo" src="" alt="Логотип"></a>
+        <header class="header">
+            <a href="#"><img class="header__logo" src="./images/logo.svg" alt="Логотип"></a>
+            <div class="header__line"></div>
         </header>
         <main>
             <section class="profile">
                 <div class="profile__avatar"></div>
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
+                    <a href="#" class="profile__edit-button link">&#128396</a>
                     <p class="profile__text">Исследователь океана</p>
                     <div class="profile__vector"></div>
                 </div>
-                <div class="profile__button"></div>
+                    <button class="profile__button-add">+</button>
             </section>
             <section class="cards">
                 <div class="card">
-                    <img class="card__image" src="" alt="">
+                    <img class="card__image" src="./images/kirill-pershin-Карачаевск.jpg" alt="Картинка Карачаевск">
                     <div class="card__caption">
-                        <h2 class="card__title"></h2>
-                        <div class="card__vector"></div>
+                        <h2 class="card__title">Карачаевск</h2>
+                        <img class="card__vector" src="./images/Group-1.svg" alt="Лайк">
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card__image" src="./images/alexey-elfimov-Эльбрус.jpg" alt="Картинка гора Эльбрус">
+                    <div class="card__caption">
+                        <h2 class="card__title">Гора Эльбрус</h2>
+                        <img class="card__vector" src="./images/Group-1.svg" alt="Лайк">
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card__image" src="./images/alexey-elfimov-Домбай.jpg" alt="Картинка Домбай">
+                    <div class="card__caption">
+                        <h2 class="card__title">Домбай</h2>
+                        <img class="card__vector" src="./images/Group-1.svg" alt="Лайк">
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card__image" src="./images/alexey-elfimov-Эльбрус.jpg" alt="Картинка гора Эльбрус">
+                    <div class="card__caption">
+                        <h2 class="card__title">Гора Эльбрус</h2>
+                        <img class="card__vector" src="./images/Group-1.svg" alt="Лайк">
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card__image" src="./images/alexey-elfimov-Домбай.jpg" alt="Картинка Домбай">
+                    <div class="card__caption">
+                        <h2 class="card__title">Домбай</h2>
+                        <img class="card__vector" src="./images/Group-1.svg" alt="Лайк">
+                    </div>
+                </div>
+                <div class="card">
+                    <img class="card__image" src="./images/kirill-pershin-Карачаевск.jpg" alt="Картинка Карачаево-Ч...">
+                    <div class="card__caption">
+                        <h2 class="card__title">Карачаево-Ч...</h2>
+                        <img class="card__vector" src="./images/Group-1.svg" alt="Лайк">
                     </div>
                 </div>
             </section>
@@ -35,6 +72,20 @@
            <p class="footer__copyright">© 2022. Илья</p>
         </footer>
     </div>
+
+    <div class="popup">
+        <div class="popup__container">
+            <button class="popup__close">&#10006</button>
+            <div class="popup__input">
+              <h3 class="input__title">Редактировать профиль</h3>
+              <input type="text" placeholder="Жак-Ив Кусто" class="input__text input__text_type_song">
+              <input type="text" placeholder="Исследователь океана" class="input__text input__text_type_artist">
+              <button class="form__submit-btn form__submit-btn_action_add">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./scripts/index.js"></script>
     
 </body>
 </html>

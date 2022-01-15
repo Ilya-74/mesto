@@ -1,0 +1,7 @@
+.card__caption {
+    max-width: 246px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin: 0 auto;
+}
