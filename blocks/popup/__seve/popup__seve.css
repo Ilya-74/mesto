@@ -1,0 +1,24 @@
+.popup__seve {
+    width: 358px;
+    height: 50px;
+    background: #000000;
+    border-radius: 2px;
+    border: none;
+    margin: 48px 36px 37px;
+    font-family: 'Inter', "Arial", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 762px) {
+    .popup__seve {
+        width: 238px;
+        margin: 45px 22px 25px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
