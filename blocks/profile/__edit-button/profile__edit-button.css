@@ -6,7 +6,15 @@
     box-sizing: border-box;
     margin-left: 18px;
     margin-top: 16px;
-    text-decoration: none;
     text-align: center;
     position: relative;
+}
+
+@media screen and (max-width: 762px) {
+    .profile__edit-button {
+        width: 18px;
+        height: 18px;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
 }
