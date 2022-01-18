@@ -6,8 +6,8 @@ const profileBio = document.querySelector('.profile__bio')
 const popup = document.querySelector('.popup')
 const popupCloseButton = document.querySelector('.popup__close')
 const popupSeveButton = document.querySelector('.popup__seve')
-const nameInput = document.querySelector('.popup__input_name')
-const jobInput = document.querySelector('.popup__input_bio')
+const nameInput = document.querySelector('.popup__input-name')
+const jobInput = document.querySelector('.popup__input-bio')
 
 //Определили функцию кнопки: открыть, закрыть popup.
 
