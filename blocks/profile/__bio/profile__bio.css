@@ -1,4 +1,4 @@
-.profile__text {
+.profile__bio {
     font-family: 'Inter', "Arial", sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 762px) {
-    .profile__text {
+    .profile__bio {
         font-size: 14px;
         line-height: 17px;
         margin-top: 14px;
