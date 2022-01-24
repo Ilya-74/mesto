@@ -4,6 +4,7 @@
     background: #000000;
     border-radius: 2px;
     border: none;
+    padding: 0;
     margin: 48px 36px 37px;
     font-family: 'Inter', "Arial", sans-serif;
     font-style: normal;
@@ -12,6 +13,11 @@
     line-height: 22px;
     text-align: center;
     color: #FFFFFF;
+}
+
+.popup__seve:hover {
+    content: "";
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 762px) {

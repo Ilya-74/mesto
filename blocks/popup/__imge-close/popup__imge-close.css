@@ -1,0 +1,23 @@
+.popup__imge-close {
+    height: 32px;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: -12%;
+    left: 102%;
+    padding: 0;
+    border: none;
+}
+    
+.popup__imge-close:hover {
+    content: "";
+    opacity: 0.6;
+}
+    
+@media screen and (max-width: 762px) {
+    .popup__imge-close {
+        width: 20px;
+        height: 20px;
+        top: -10%;
+        left: 93%;
+    }
+}

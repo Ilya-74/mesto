@@ -1,0 +1,8 @@
+.card__vector {
+    color: #000000;
+}
+
+.card__vector:hover {
+    content: "";
+    opacity: 0.5;
+}
