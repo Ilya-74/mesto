@@ -1,5 +1,7 @@
 .card__vector {
+    background: #FFFFFF;
     color: #000000;
+    border: none;
 }
 
 .card__vector:hover {

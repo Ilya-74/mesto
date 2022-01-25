@@ -4,67 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Жак-Ив Кусто</title>
+  <title>Место</title>
 </head>
 <body class="root">
     <div class="page">
         <header class="header">
             <a href="#"><img class="header__logo" src="./images/logo.svg" alt="Логотип"></a>
-            <div class="header__line"></div>
         </header>
         <main>
             <section class="profile">
                 <div class="profile__avatar"></div>
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <a href="#" class="profile__edit-button"><img src="./images/Vec(2).svg" alt="Вектор"></a>
+                    <button type="submit" class="profile__edit-button"><img src="./images/Vec(2).svg" alt="Вектор"></button>
                     <p class="profile__bio">Исследователь океана</p>                    
                 </div>
-                    <a href="#" class="profile__button-add"><img src="./images/vec.svg" alt="Вектор"></a>
+                    <button type="submit" class="profile__button-add"><img src="./images/vec.svg" alt="Вектор"></button>
             </section>
             <section class="cards">
-                <div class="card">
+                <article class="card">
                     <img class="card__image" src="./images/kirill-pershin-Карачаевск.jpg" alt="Картинка Карачаевск">
                     <div class="card__caption">
                         <h2 class="card__title">Карачаевск</h2>
-                        <a href="#" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></a>
+                        <button type="submit" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></button>
                     </div>
-                </div>
-                <div class="card">
+                </article>
+                <article class="card">
                     <img class="card__image" src="./images/alexey-elfimov-Эльбрус.jpg" alt="Картинка гора Эльбрус">
                     <div class="card__caption">
                         <h2 class="card__title">Гора Эльбрус</h2>
-                        <a href="#" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></a>
+                        <button type="submit" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></button>
                     </div>
-                </div>
-                <div class="card">
+                </article>
+                <article class="card">
                     <img class="card__image" src="./images/alexey-elfimov-Домбай.jpg" alt="Картинка Домбай">
                     <div class="card__caption">
                         <h2 class="card__title">Домбай</h2>
-                        <a href="#" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></a>
+                        <button type="submit" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></button>
                     </div>
-                </div>
-                <div class="card">
+                </article>
+                <article class="card">
                     <img class="card__image" src="./images/alexey-elfimov-Эльбрус.jpg" alt="Картинка гора Эльбрус">
                     <div class="card__caption">
                         <h2 class="card__title">Гора Эльбрус</h2>
-                        <a href="#" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></a>
+                        <button type="submit" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></button>
                     </div>
-                </div>
-                <div class="card">
+                </article>
+                <article class="card">
                     <img class="card__image" src="./images/alexey-elfimov-Домбай.jpg" alt="Картинка Домбай">
                     <div class="card__caption">
                         <h2 class="card__title">Домбай</h2>
-                        <a href="#" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></a>
+                        <button type="submit" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></button>
                     </div>
-                </div>
-                <div class="card">
+                </article>
+                <article class="card">
                     <img class="card__image" src="./images/kirill-pershin-Карачаевск.jpg" alt="Картинка Карачаево-Ч...">
                     <div class="card__caption">
                         <h2 class="card__title">Карачаево-Ч...</h2>
-                        <a href="#" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></a>
+                        <button type="submit" class="card__vector"><img src="./images/Group-1.svg" alt="Лайк"></button>
                     </div>
-                </div>
+                </article>
             </section>
         </main>
         <footer class="footer">
@@ -74,13 +73,15 @@
 
     <div class="popup">
         <div class="popup__container">
-            <a class="popup__close" href="#">
+            <button type="submit" class="popup__close">
                 <img class="popup__imge-close" src="./images/CloseIcon.svg" alt="Закрыть">
-            </a>
+            </button>
               <h3 class="popup__title">Редактировать профиль</h3>
-              <input type="text" placeholder="Жак-Ив Кусто" class="popup__input-name">
-              <input type="text" placeholder="Исследователь океана" class="popup__input-bio">
-              <form action="#"><button type="submit" class="popup__seve">Сохранить</button></form>
+                <form action="#">
+                  <input name="myForm" type="text" placeholder="Жак-Ив Кусто" class="popup__input popup__input-name">
+                  <input name="myForm" type="text" placeholder="Исследователь океана" class="popup__input popup__input-bio">
+                  <button type="submit" class="popup__seve">Сохранить</button>
+                </form>
         </div>
     </div>
 
