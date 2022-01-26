@@ -16,10 +16,10 @@
                 <div class="profile__avatar"></div>
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button type="submit" class="profile__edit-button"><img src="./images/Vec(2).svg" alt="Вектор"></button>
+                    <button class="profile__edit-button" type="submit" aria-label="editOpen"><img src="./images/Vec(2).svg" alt="Вектор"></button>
                     <p class="profile__bio">Исследователь океана</p>                    
                 </div>
-                    <button type="submit" class="profile__button-add"><img src="./images/vec.svg" alt="Вектор"></button>
+                    <button class="profile__button-add" type="submit" aria-label="addOpen"><img src="./images/vec.svg" alt="Вектор"></button>
             </section>
             <section class="cards">
                 <article class="card">
@@ -73,14 +73,14 @@
 
     <div class="popup">
         <div class="popup__container">
-            <button type="submit" class="popup__close">
+            <button class="popup__close" aria-label="Close" type="submit">
                 <img class="popup__imge-close" src="./images/CloseIcon.svg" alt="Закрыть">
             </button>
               <h3 class="popup__title">Редактировать профиль</h3>
-                <form action="#">
-                  <input name="myForm" type="text" placeholder="Жак-Ив Кусто" class="popup__input popup__input-name">
-                  <input name="myForm" type="text" placeholder="Исследователь океана" class="popup__input popup__input-bio">
-                  <button type="submit" class="popup__seve">Сохранить</button>
+                <form class="popup__form" name="myForm">
+                  <input class="popup__input popup__input_type_name" name="name" type="text" value="Жак-Ив Кусто">
+                  <input class="popup__input popup__input_type_bio" name="bio" type="text" value="Исследователь океана">
+                  <button class="popup__seve" aria-label="Seve" type="submit">Сохранить</button>
                 </form>
         </div>
     </div>

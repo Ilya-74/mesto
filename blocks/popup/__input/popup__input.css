@@ -12,12 +12,26 @@
     border-top: none;
     border-right: none;
     padding-bottom: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.popup__input {
+    padding-bottom: 12px;
+    margin: 30px 36px 0;
+
 }
 
 @media screen and (max-width: 762px) {
     .popup__input {
         width: 238px;
         margin-top: 75px;
+        margin-left: 22px;
+        margin-right: 22px;
+    }
+
+    .popup__input {
+        width: 238px;
         margin-left: 22px;
         margin-right: 22px;
     }

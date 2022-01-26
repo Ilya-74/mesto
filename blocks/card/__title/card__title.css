@@ -7,4 +7,6 @@
     color: #000000;
     margin-top: 28px;
     margin-bottom: 28px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
