@@ -2,6 +2,8 @@
     background: #FFFFFF;
     color: #000000;
     border: none;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
 }
 
 .card__vector:hover {

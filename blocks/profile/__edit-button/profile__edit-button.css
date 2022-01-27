@@ -9,6 +9,8 @@
     margin-top: 16px;
     text-align: center;
     position: relative;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
 }
 
 .profile__edit-button:hover {
@@ -20,6 +22,7 @@
     .profile__edit-button {
         width: 18px;
         height: 18px;
+        padding: 0;
         margin-left: 10px;
         margin-top: 10px;
     }

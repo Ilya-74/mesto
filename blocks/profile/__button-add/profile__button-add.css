@@ -9,6 +9,8 @@
     text-align: center;
     line-height: 55px;
     padding: 0;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
 }
 
 .profile__button-add:hover {
