@@ -1,5 +1,6 @@
 .popup__input:first-child  {
     width: 28vw;
+    max-width: 358px;
     font-family: 'Inter', "Arial", sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -7,7 +8,7 @@
     line-height: 17px;
     color: #000000;
     padding: 0;
-    margin: 54px 36px 0;
+    margin: 54px 8% 0;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-left: none;
     border-top: none;
@@ -20,6 +21,7 @@
 
 .popup__input {
     width: 28vw;
+    max-width: 358px;
     font-family: 'Inter', "Arial", sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -35,7 +37,7 @@
     overflow: hidden;
     padding: 0;
     padding-bottom: 12px;
-    margin: 30px 36px 0;
+    margin: 30px 8% 0;
 
 }
 

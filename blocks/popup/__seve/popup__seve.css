@@ -2,12 +2,13 @@
     position: relative;
     grid-area: sevebtn;
     width: 28vw;
+    max-width: 358px;
     height: 50px;
     background: #000000;
     border-radius: 2px;
     border: none;
     padding: 0;
-    margin: 48px 36px 37px;
+    margin: 48px 8% 37px;
     font-family: 'Inter', "Arial", sans-serif;
     font-style: normal;
     font-weight: normal;
