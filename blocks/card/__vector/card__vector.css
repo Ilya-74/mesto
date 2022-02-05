@@ -1,9 +1,14 @@
 .card__vector {
-    background: #FFFFFF;
+    min-width: 22px;
+    height: 19px;
+    background-image: url(../../../images/Group-1.svg);
     color: #000000;
     border: none;
     cursor: pointer;
     transition: all 0.5s ease-out;
+    background-repeat: no-repeat;
+	background-size: contain;
+	background-color: transparent;
 }
 
 .card__vector:hover {
