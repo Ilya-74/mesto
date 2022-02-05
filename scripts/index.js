@@ -19,12 +19,11 @@ const profileName = document.querySelector('.profile__name');
 const profileBio = document.querySelector('.profile__bio');
 const popupCards = document.querySelector('.popup_cards');
 const popupForm = document.querySelector('.popup__form');
-const cardslist = document.querySelector('.cards__list');
 const popupEdit = document.querySelector('.popup_edit');
 const popupImg = document.querySelector('.popup_imge');
 const cards = document.querySelector('.cards').content;
 const popup = document.querySelector('.popup');
-
+const list = document.querySelector('.list');
 
 //Дефолтная функция отрыть PopUp.
 function openPopup(popup) {
@@ -130,7 +129,7 @@ function createCard(card){ //Локальные переменые в функц
 }
 // Функция для вставки карточки в начало.
 function renderCard(card) { 
-  cardslist.prepend(createCard(card)); 
+  list.prepend(createCard(card)); 
 } 
 // Рендерим каждый элемент в массиве.
 initialCards.forEach(renderCard);

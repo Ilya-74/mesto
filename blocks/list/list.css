@@ -1,4 +1,4 @@
-.cards__list {
+.list {
     display: grid;
     max-width: 880px;
     margin: 47px auto 0;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 762px) {
-    .cards__list {
+    .list {
         max-width: 282px;
         margin-top: 36px;
         gap: 20px;
