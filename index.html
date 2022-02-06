@@ -29,35 +29,35 @@
         </footer>
     </div>
 
-    <section class="popup popup_edit">
+    <section class="popup popup_type_profile-edit">
         <div class="popup__container">
             <button class="popup__close" aria-label="Close" type="button">
                 <img class="popup__imge-close" src="./images/CloseIcon.svg" alt="Закрыть">
             </button>
               <h3 class="popup__title">Редактировать профиль</h3>
                 <form class="popup__form" name="myForm">
-                  <input class="popup__input popup__input_type_name" name="name" type="text" value="Жак-Ив Кусто" placeholder="Жак-Ив Кусто">
-                  <input class="popup__input popup__input_type_bio" name="bio" type="text" value="Исследователь океана" placeholder="Исследователь океана">
+                  <input required class="popup__input popup__input_type_name" name="name" type="text" value="Жак-Ив Кусто" placeholder="Жак-Ив Кусто">
+                  <input required class="popup__input popup__input_type_bio" name="bio" type="text" value="Исследователь океана" placeholder="Исследователь океана">
                   <button class="popup__seve" aria-label="Seve" type="submit">Сохранить</button>
                 </form>
         </div>
     </section>
 
-    <section class="popup popup_cards">
+    <section class="popup popup_type_cards-edit">
         <div class="popup__container">
             <button class="popup__close popup__close-card" aria-label="Close" type="button">
                 <img class="popup__imge-close" src="./images/CloseIcon.svg" alt="Закрыть">
             </button>
               <h3 class="popup__title">Новое место</h3>
                 <form class="popup__form popup__form-add" name="myForm">
-                  <input class="popup__input popup__input_card_name" type="text" placeholder="Название">
-                  <input class="popup__input popup__input_card_link" name="link" type="text" placeholder="Ссылка на картинку">
+                  <input class="popup__input popup__input_card_name" type="text" required="" placeholder="Название">
+                  <input class="popup__input popup__input_card_link" name="link" type="url" required="" placeholder="https://unsplash.com">
                   <button class="popup__seve popup__seve_card" aria-label="Seve" type="submit">Создать</button>
                 </form>
         </div>
     </section>
 
-    <section class="popup popup_imge">
+    <section class="popup popup_type_imge-edit">
         <figure class="popup__imge-open">
             <button class="popup__close popup__close-img" type="button">
                 <img class="popup__imge-close" src="./images/CloseIcon.svg" alt="Закрыть">
@@ -78,7 +78,7 @@
             </div>
         </div>
     </template>
-
+    <script src="./scripts/initialCards.js"></script>
     <script src="./scripts/index.js"></script>
     
 </body>
