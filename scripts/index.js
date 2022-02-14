@@ -130,7 +130,7 @@ const popupSeveDisabled = popupForm.querySelector('.popup__seve_add');
 
 function formSubmit(evt) {
   evt.preventDefault();
-  console.log('popupForm submitted', popupForm.checkValidity());
+
 }
 
 const checkInputValidity = (popupForm, input) => {
@@ -159,7 +159,7 @@ const checkButtonValidity = (popupForm, popupSeveDisabled) => {
 
 function enableValidation() {
   popupForm.addEventListener('submit', formSubmit);
-  const inputs = document.querySelectorAll('.popup__input');
+  const inputs = document.querySelectorAll('.popup__input_type');
 
   checkButtonValidity(popupForm, popupSeveDisabled);
  
@@ -211,7 +211,7 @@ function enableCardValidation() {
   
   popupAddForm.addEventListener('submit', formCardSubmit);
 
-  const inputsCard = popupAddForm.querySelectorAll('.popup__input');
+  const inputsCard = popupAddForm.querySelectorAll('.popup__input_card');
 
   checkCardButtonValidity(popupAddForm, addCardSevePopupButton);
   
@@ -224,5 +224,36 @@ function enableCardValidation() {
 
 
 }
-
 enableCardValidation();
+
+const popupCloseClickFormProfile = document.querySelector('.popup_type_profile-edit');
+const popupCloseClickFormCard = document.querySelector('.popup_type_cards-edit');
+const popupCloseClickFormImge = document.querySelector('.popup_type_imge-edit');
+const popupContainer = document.querySelector('.popup__container');
+
+function popupCloseForm(evt) { 
+  if(evt.target === popupCloseClickFormProfile) { // Если цель клика - фон, то:
+    popupCloseClickFormProfile.classList.remove('popup_opened'); // Убираем активный класс с фона
+    popupContainer.classList.remove('popup_opened'); // И с окна
+  }
+  if(evt.target === popupCloseClickFormCard) { // Если цель клика - фон, то:
+    popupCloseClickFormCard.classList.remove('popup_opened'); // Убираем активный класс с фона
+    popupContainer.classList.remove('popup_opened'); // И с окна
+  }
+  if(evt.target === popupCloseClickFormImge) { // Если цель клика - фон, то:
+    popupCloseClickFormImge.classList.remove('popup_opened'); // Убираем активный класс с фона
+    popupContainer.classList.remove('popup_opened'); // И с окна
+  }
+
+}
+document.addEventListener('click', popupCloseForm); // Вешаем обработчик на весь документ
+
+//Закрыли кнопкой Esc
+document.addEventListener('keydown', function(evt) {
+  if (evt.key === 'Escape') {
+  //функция закрытия окна
+  popupCloseClickFormProfile.classList.remove('popup_opened');
+  popupCloseClickFormCard.classList.remove('popup_opened');
+  popupCloseClickFormImge.classList.remove('popup_opened');
+  }
+  });
