@@ -124,3 +124,105 @@ function openPopupPic(data) {
   popupPhoto.alt = data.name;//Назване если картинка не отобразилась.
   popupPhotoCaption.textContent = data.name;// подпись к картинке.
 }
+
+//===================================Валидация форм===============================================
+const popupSeveDisabled = popupForm.querySelector('.popup__seve_add');
+
+function formSubmit(evt) {
+  evt.preventDefault();
+  console.log('popupForm submitted', popupForm.checkValidity());
+}
+
+const checkInputValidity = (popupForm, input) => {
+  const errorMessage = popupForm.querySelector(`#error-${input.id}`);
+  if (input.validity.valid) {
+    errorMessage.textContent = '';
+    input.classList.remove('popup__input_type_error');
+
+  } else {
+    errorMessage.textContent = input.validationMessage;
+    input.classList.add('popup__input_type_error');
+  }
+}
+
+const checkButtonValidity = (popupForm, popupSeveDisabled) => {
+  if (popupForm.checkValidity()) {
+    popupSeveDisabled.removeAttribute('disabled');
+    popupSeveDisabled.classList.remove('popup__seve_disabled');
+
+  } else {
+    popupSeveDisabled.setAttribute('disabled', '');
+    popupSeveDisabled.classList.add('popup__seve_disabled');
+
+  }
+}
+
+function enableValidation() {
+  popupForm.addEventListener('submit', formSubmit);
+  const inputs = document.querySelectorAll('.popup__input');
+
+  checkButtonValidity(popupForm, popupSeveDisabled);
+ 
+  inputs.forEach(input => {
+    input.addEventListener('input', () => {
+      checkInputValidity(popupForm, input);
+      checkButtonValidity(popupForm, popupSeveDisabled);
+    }); 
+  });
+}
+
+enableValidation();
+
+//=========================================
+
+const formCardSubmit = (evt) => {
+  evt.preventDefault();
+
+}
+
+const checkCardInputValidity = (popupAddForm, input) => {
+  const errorCardMessage = popupAddForm.querySelector(`#error-${input.id}`)
+  if (input.validity.valid) {
+    errorCardMessage.textContent = '';
+    input.classList.remove('popup__input_type_error');
+  } else {
+    errorCardMessage.textContent = input.validationMessage;
+    input.classList.add('popup__input_type_error');
+  }
+
+}
+
+const checkCardButtonValidity = (popupAddForm, addCardSevePopupButton) => {
+  if (popupAddForm.checkValidity()) {
+    addCardSevePopupButton.removeAttribute('disabled');
+    addCardSevePopupButton.classList.remove('popup__seve_disabled');
+
+  } else {
+    addCardSevePopupButton.setAttribute('disabled', '');
+    addCardSevePopupButton.classList.add('popup__seve_disabled');
+
+  }
+
+}
+
+//Функция валидации
+function enableCardValidation() {
+  const popupAddForm = document.querySelector('.popup__form-add');
+  
+  popupAddForm.addEventListener('submit', formCardSubmit);
+
+  const inputsCard = popupAddForm.querySelectorAll('.popup__input');
+
+  checkCardButtonValidity(popupAddForm, addCardSevePopupButton);
+  
+  inputsCard.forEach(input => {
+    input.addEventListener('input', () => {
+    checkCardInputValidity(popupAddForm, input);
+    checkCardButtonValidity(popupAddForm, addCardSevePopupButton);
+  });
+  })
+
+
+}
+
+enableCardValidation();

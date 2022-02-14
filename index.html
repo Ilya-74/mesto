@@ -35,10 +35,15 @@
                 <img class="popup__imge-close" src="./images/CloseIcon.svg" alt="Закрыть">
             </button>
               <h3 class="popup__title">Редактировать профиль</h3>
-                <form class="popup__form" name="myForm">
-                  <input required class="popup__input popup__input_type_name" name="name" type="text" value="Жак-Ив Кусто" placeholder="Жак-Ив Кусто">
-                  <input required class="popup__input popup__input_type_bio" name="bio" type="text" value="Исследователь океана" placeholder="Исследователь океана">
-                  <button class="popup__seve" aria-label="Seve" type="submit">Сохранить</button>
+                <form class="popup__form" name="myForm" novalidate>
+                  <input id="username" required class="popup__input popup__input_type_name" minlength="2" maxlength="40" name="name" type="text" value="Жак-Ив Кусто" placeholder="Имя">
+                    <span id="error-username" class="error-message error-message_visible error-message_type_username"></span>
+                  <input id="userbio" required class="popup__input popup__input_type_bio" minlength="2" maxlength="200" name="bio" type="text" value="Исследователь океана" placeholder="О себе">
+                    <span id="error-userbio" class="error-message error-message_visible error-message_type_userbio"></span>
+                    <span id="success-message" class="success-message success-message__visible">
+                      Валидация успешно пройдена!
+                    </span>
+                  <button class="popup__seve popup__seve_add" aria-label="Seve" type="submit">Сохранить</button>
                 </form>
         </div>
     </section>
@@ -49,9 +54,11 @@
                 <img class="popup__imge-close" src="./images/CloseIcon.svg" alt="Закрыть">
             </button>
               <h3 class="popup__title">Новое место</h3>
-                <form class="popup__form popup__form-add" name="myForm">
-                  <input class="popup__input popup__input_card_name" type="text" required="" placeholder="Название">
-                  <input class="popup__input popup__input_card_link" name="link" type="url" required="" placeholder="https://unsplash.com">
+                <form class="popup__form popup__form-add" name="myForm" novalidate>
+                  <input id="cardname" required class="popup__input popup__input_card_name" minlength="2" maxlength="30" type="text" placeholder="Название">
+                  <span id="error-cardname" class="error-message error-message_visible error-message_type_cardname"></span>
+                  <input id="cardlink" required class="popup__input popup__input_card_link" name="link" type="url" placeholder="Ссылка на картинку">
+                  <span id="error-cardlink" class="error-message error-message_visible error-message_type_cadrname"></span>
                   <button class="popup__seve popup__seve_card" aria-label="Seve" type="submit">Создать</button>
                 </form>
         </div>
