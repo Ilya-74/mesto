@@ -5,7 +5,7 @@
 const profileOpenPopupButton = document.querySelector('.profile__edit-button');
 const addCardOpenPopupButton = document.querySelector('.profile__button-add');
 const addCardClosePopupButton = document.querySelector('.popup__close-card');
-const addCardSevePopupButton = document.querySelector('.popup__seve_card');
+const addCardSevePopupButton = document.querySelector('.popup__seve_card'); // //popup__seve_add
 const inputCardName = document.querySelector('.popup__input_card_name');
 const inputCardLink = document.querySelector('.popup__input_card_link');
 const nameInput = document.querySelector('.popup__input_type_name');
@@ -126,105 +126,136 @@ function openPopupPic(data) {
 }
 
 //===================================Валидация форм===============================================
-const popupSeveDisabled = popupForm.querySelector('.popup__seve_add');
 
-function formSubmit(evt) {
+const formSubmit = (evt, popupForm) => {
   evt.preventDefault();
+  if (popupForm.checkValidity()) {  //если форма валидная.
+    popupForm.reset();//очистили поля формы.
+  }
+}
+//Функция убирает класс с ошибкой в поле.
+const setInputValid = (inputErrorClass, errorMessage, input) => {
+  errorMessage.textContent = ''; //- сообщения об ошибке.
+  input.classList.remove(inputErrorClass);//- класс с ошибкой(красное поле).
+}
+//Функция добовляет класс с ошибкой в поле.
+const setInputInvalid = (inputErrorClass, errorMessage, input) => {
+  errorMessage.textContent = input.validationMessage; //+ сообщения об ошибке.
+  input.classList.add(inputErrorClass);//+ класс с ошибкой(красное поле).
 
 }
+//Проверка валидации.
+const checkInputValidity = ({ inputErrorClass }, popupForm, input) => {
+  const errorMessage = popupForm.querySelector(`#error-${input.id}`);//нашли инпут.
 
-const checkInputValidity = (popupForm, input) => {
-  const errorMessage = popupForm.querySelector(`#error-${input.id}`);
   if (input.validity.valid) {
-    errorMessage.textContent = '';
-    input.classList.remove('popup__input_type_error');
-
+    setInputValid(inputErrorClass, errorMessage, input);//если пройдена, убрли ошибку.
   } else {
-    errorMessage.textContent = input.validationMessage;
-    input.classList.add('popup__input_type_error');
+    setInputInvalid(inputErrorClass, errorMessage, input);//если проверка не пройдена, добовляем ошибку.
   }
 }
 
-const checkButtonValidity = (popupForm, popupSeveDisabled) => {
+const setButtonValid = (disabledButtonClass, popupSeveDisabled) => {
+  popupSeveDisabled.removeAttribute('disabled');
+  popupSeveDisabled.classList.remove(disabledButtonClass);
+
+}
+
+const setButtonInvalid = (disabledButtonClass, popupSeveDisabled) => {
+  popupSeveDisabled.setAttribute('disabled', '');
+  popupSeveDisabled.classList.add(disabledButtonClass);
+}
+
+const checkButtonValidity = ({ disabledButtonClass }, popupForm, popupSeveDisabled) => {
   if (popupForm.checkValidity()) {
-    popupSeveDisabled.removeAttribute('disabled');
-    popupSeveDisabled.classList.remove('popup__seve_disabled');
+    setButtonValid(disabledButtonClass, popupSeveDisabled);
 
   } else {
-    popupSeveDisabled.setAttribute('disabled', '');
-    popupSeveDisabled.classList.add('popup__seve_disabled');
-
+    setButtonInvalid(disabledButtonClass, popupSeveDisabled);
   }
 }
 
-function enableValidation() {
-  popupForm.addEventListener('submit', formSubmit);
-  const inputs = document.querySelectorAll('.popup__input_type');
-
-  checkButtonValidity(popupForm, popupSeveDisabled);
- 
-  inputs.forEach(input => {
-    input.addEventListener('input', () => {
-      checkInputValidity(popupForm, input);
-      checkButtonValidity(popupForm, popupSeveDisabled);
-    }); 
-  });
-}
-
-enableValidation();
+enableValidation({
+  inputSelector: '.popup__input_type',
+  inputErrorClass: 'popup__input_type_error',
+  buttonSelector: '.popup__seve_add',
+  disabledButtonClass: 'popup__seve_disabled',
+});
 
 //=========================================
 
 const formCardSubmit = (evt) => {
   evt.preventDefault();
+}
+
+const setCardInputValid = (inputCardErrorClass, errorCardMessage, input) => {
+  errorCardMessage.textContent = ''; //если все хорошо, стираем ошибку.
+    input.classList.remove(inputCardErrorClass);
 
 }
 
-const checkCardInputValidity = (popupAddForm, input) => {
-  const errorCardMessage = popupAddForm.querySelector(`#error-${input.id}`)
+const setCardInputInvalid = (inputCardErrorClass, errorCardMessage, input) => {
+  errorCardMessage.textContent = input.validationMessage;//если валидация не проходит, добовляем сообщение об ошибке.
+    input.classList.add(inputCardErrorClass);
+}
+
+const checkCardInputValidity = ({ inputCardErrorClass }, popupAddForm, input) => {
+  const errorCardMessage = popupAddForm.querySelector(`#error-${input.id}`);
   if (input.validity.valid) {
-    errorCardMessage.textContent = '';
-    input.classList.remove('popup__input_type_error');
+    setCardInputValid(inputCardErrorClass, errorCardMessage, input);
   } else {
-    errorCardMessage.textContent = input.validationMessage;
-    input.classList.add('popup__input_type_error');
+    setCardInputInvalid(inputCardErrorClass, errorCardMessage, input);
   }
 
 }
 
-const checkCardButtonValidity = (popupAddForm, addCardSevePopupButton) => {
+const setCardButtonValid = (disabledCardButtonClass, button) => {
+  button.removeAttribute('disabled');
+    button.classList.remove(disabledCardButtonClass);
+
+}
+
+const setCardButtonInvalid = (disabledCardButtonClass, button) => {
+  button.setAttribute('disabled', '');
+    button.classList.add(disabledCardButtonClass);
+
+}
+
+const checkCardButtonValidity = ({ disabledCardButtonClass },popupAddForm, button) => {
   if (popupAddForm.checkValidity()) {
-    addCardSevePopupButton.removeAttribute('disabled');
-    addCardSevePopupButton.classList.remove('popup__seve_disabled');
-
+    setCardButtonValid(disabledCardButtonClass, button);
   } else {
-    addCardSevePopupButton.setAttribute('disabled', '');
-    addCardSevePopupButton.classList.add('popup__seve_disabled');
-
+    setCardButtonInvalid(disabledCardButtonClass, button);
   }
-
 }
 
-//Функция валидации
-function enableCardValidation() {
-  const popupAddForm = document.querySelector('.popup__form-add');
-  
-  popupAddForm.addEventListener('submit', formCardSubmit);
+function enableCardValidation({ formSelector, inputCardSelector, buttonCardSelector, ...rest }) {
+  const popupAddForm = document.querySelector(formSelector);
 
-  const inputsCard = popupAddForm.querySelectorAll('.popup__input_card');
+  popupAddForm.addEventListener('submite', (evt) => formCardSubmit(evt, popupAddForm));
+  const inputsCard = popupAddForm.querySelectorAll(inputCardSelector);
+  const button = popupAddForm.querySelector(buttonCardSelector)
 
-  checkCardButtonValidity(popupAddForm, addCardSevePopupButton);
-  
+  checkCardButtonValidity(rest, popupAddForm, button); //Вызвали функцию не активной кнопки.
+
   inputsCard.forEach(input => {
     input.addEventListener('input', () => {
-    checkCardInputValidity(popupAddForm, input);
-    checkCardButtonValidity(popupAddForm, addCardSevePopupButton);
+      checkCardInputValidity(rest, popupAddForm, input);
+      checkCardButtonValidity(rest, popupAddForm, button);
+                                    
+    });
   });
-  })
+} 
 
 
-}
-enableCardValidation();
+enableCardValidation({
+  formSelector: '.popup__form-add',
+  inputCardSelector: '.popup__input_card',
+  inputCardErrorClass: 'popup__input_type_error',
+  buttonCardSelector: '.popup__seve_button',
+  disabledCardButtonClass: 'popup__seve_disabled',
+});
+
 
 const popupCloseClickFormProfile = document.querySelector('.popup_type_profile-edit');
 const popupCloseClickFormCard = document.querySelector('.popup_type_cards-edit');
