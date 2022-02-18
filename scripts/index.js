@@ -21,13 +21,15 @@ const popupImg = document.querySelector('.popup_type_imge-edit');
 const cards = document.querySelector('.cards').content;
 const list = document.querySelector('.list');
 
-//Дефолтная функция отрыть PopUp.
+//Дефолтная функция открыть PopUp.
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', doSomething);//слушатель функции закрытия попап кнопкой Esc.
 }
 //Дефолтная функция Закрыть PopUp.
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', doSomething);//слушатель функции закрытия попап кнопкой Esc.
 }
 
 //функция выполняет открытия попап карточки.
@@ -144,36 +146,6 @@ const setInputInvalid = (inputErrorClass, errorMessage, input) => {
   input.classList.add(inputErrorClass);//+ класс с ошибкой(красное поле).
 
 }
-//Проверка валидации.
-const checkInputValidity = ({ inputErrorClass }, popupForm, input) => {
-  const errorMessage = popupForm.querySelector(`#error-${input.id}`);//нашли инпут.
-
-  if (input.validity.valid) {
-    setInputValid(inputErrorClass, errorMessage, input);//если пройдена, убрли ошибку.
-  } else {
-    setInputInvalid(inputErrorClass, errorMessage, input);//если проверка не пройдена, добовляем ошибку.
-  }
-}
-
-const setButtonValid = (disabledButtonClass, popupSeveDisabled) => {
-  popupSeveDisabled.removeAttribute('disabled');
-  popupSeveDisabled.classList.remove(disabledButtonClass);
-
-}
-
-const setButtonInvalid = (disabledButtonClass, popupSeveDisabled) => {
-  popupSeveDisabled.setAttribute('disabled', '');
-  popupSeveDisabled.classList.add(disabledButtonClass);
-}
-
-const checkButtonValidity = ({ disabledButtonClass }, popupForm, popupSeveDisabled) => {
-  if (popupForm.checkValidity()) {
-    setButtonValid(disabledButtonClass, popupSeveDisabled);
-
-  } else {
-    setButtonInvalid(disabledButtonClass, popupSeveDisabled);
-  }
-}
 
 enableValidation({
   inputSelector: '.popup__input_type',
@@ -184,8 +156,11 @@ enableValidation({
 
 //=========================================
 
-const formCardSubmit = (evt) => {
+const formCardSubmit = (evt, popupAddForm) => {
   evt.preventDefault();
+  if (popupAddForm.checkValidity()) {
+    popupAddForm.reset();
+  }
 }
 
 const setCardInputValid = (inputCardErrorClass, errorCardMessage, input) => {
@@ -198,56 +173,6 @@ const setCardInputInvalid = (inputCardErrorClass, errorCardMessage, input) => {
   errorCardMessage.textContent = input.validationMessage;//если валидация не проходит, добовляем сообщение об ошибке.
     input.classList.add(inputCardErrorClass);
 }
-
-const checkCardInputValidity = ({ inputCardErrorClass }, popupAddForm, input) => {
-  const errorCardMessage = popupAddForm.querySelector(`#error-${input.id}`);
-  if (input.validity.valid) {
-    setCardInputValid(inputCardErrorClass, errorCardMessage, input);
-  } else {
-    setCardInputInvalid(inputCardErrorClass, errorCardMessage, input);
-  }
-
-}
-
-const setCardButtonValid = (disabledCardButtonClass, button) => {
-  button.removeAttribute('disabled');
-    button.classList.remove(disabledCardButtonClass);
-
-}
-
-const setCardButtonInvalid = (disabledCardButtonClass, button) => {
-  button.setAttribute('disabled', '');
-    button.classList.add(disabledCardButtonClass);
-
-}
-
-const checkCardButtonValidity = ({ disabledCardButtonClass },popupAddForm, button) => {
-  if (popupAddForm.checkValidity()) {
-    setCardButtonValid(disabledCardButtonClass, button);
-  } else {
-    setCardButtonInvalid(disabledCardButtonClass, button);
-  }
-}
-
-function enableCardValidation({ formSelector, inputCardSelector, buttonCardSelector, ...rest }) {
-  const popupAddForm = document.querySelector(formSelector);
-
-  popupAddForm.addEventListener('submite', (evt) => formCardSubmit(evt, popupAddForm));
-  const inputsCard = popupAddForm.querySelectorAll(inputCardSelector);
-  const button = popupAddForm.querySelector(buttonCardSelector)
-
-  checkCardButtonValidity(rest, popupAddForm, button); //Вызвали функцию не активной кнопки.
-
-  inputsCard.forEach(input => {
-    input.addEventListener('input', () => {
-      checkCardInputValidity(rest, popupAddForm, input);
-      checkCardButtonValidity(rest, popupAddForm, button);
-                                    
-    });
-  });
-} 
-
-
 enableCardValidation({
   formSelector: '.popup__form-add',
   inputCardSelector: '.popup__input_card',
@@ -280,11 +205,11 @@ function popupCloseForm(evt) {
 document.addEventListener('click', popupCloseForm); // Вешаем обработчик на весь документ
 
 //Закрыли кнопкой Esc
-document.addEventListener('keydown', function(evt) {
-  if (evt.key === 'Escape') {
+function doSomething(evt) {
+  if (evt.code === 'Escape') {
   //функция закрытия окна
   popupCloseClickFormProfile.classList.remove('popup_opened');
   popupCloseClickFormCard.classList.remove('popup_opened');
   popupCloseClickFormImge.classList.remove('popup_opened');
   }
-  });
+} 
