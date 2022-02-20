@@ -67,7 +67,7 @@ const setCardButtonValid = (disabledCardButtonClass, button) => {
 
 const setCardButtonInvalid = (disabledCardButtonClass, button) => {
   button.setAttribute('disabled', '');
-    button.classList.add(disabledCardButtonClass);
+    button.classList.add('popup__seve_disabled');  //Неактивная кнопка после сохранения карточки.
 
 }
 
@@ -84,7 +84,11 @@ function enableCardValidation({ formSelector, inputCardSelector, buttonCardSelec
 
   popupAddForm.addEventListener('submite', (evt) => formCardSubmit(evt, popupAddForm));
   const inputsCard = popupAddForm.querySelectorAll(inputCardSelector);
-  const button = popupAddForm.querySelector(buttonCardSelector)             
+  const button = popupAddForm.querySelector(buttonCardSelector)
+  
+  popupAddForm.addEventListener('reset', () => {  //для не активной кнопки при сохранении карточки.
+    setCardButtonInvalid(rest, button);
+  });
 
   checkCardButtonValidity(rest, popupAddForm, button); //Вызвали функцию не активной кнопки.
 

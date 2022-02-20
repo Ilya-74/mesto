@@ -24,19 +24,17 @@ const list = document.querySelector('.list');
 //Дефолтная функция открыть PopUp.
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', doSomething);//слушатель функции закрытия попап кнопкой Esc.
 }
 //Дефолтная функция Закрыть PopUp.
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', doSomething);//слушатель функции закрытия попап кнопкой Esc.
 }
 
 //функция выполняет открытия попап карточки.
 function openPopupAdd() {
   openPopup(popupCards);//Выполнили открытие попап. 
-  inputCardName.value = "";//Передаем инпуты в попап, для отображения.
-  inputCardLink.value = "";
+  //inputCardName.value = "";//Передаем инпуты в попап, для отображения.
+  //inputCardLink.value = "";
 }
 //функция выполняет закрытия попап карточки.
 function closePopupAdd() {
@@ -44,10 +42,8 @@ function closePopupAdd() {
 }
 //Повесили обработчики(шорох) событий на кнопки, по клику открыли/закрыли финкцию.
 addCardOpenPopupButton.addEventListener('click', () => openPopup(popupCards));
-addCardClosePopupButton.addEventListener('click', () => closePopup(popupCards));
 
 //Повесили обработчики(шорох) событий на кнопку(Крестик закрытия картинки), по клику открыли/закрыли финкцию.
-popupImgClose.addEventListener('click', () => closePopup(popupImg));
 
 //Функция выполняет передачу текста между инпутами для Профиля Кусто.
 function formSubmitHandler (evt) {
@@ -63,7 +59,6 @@ popupForm.addEventListener('submit', formSubmitHandler);
 
 //Повесили обработчики(шорох) событий на кнопки, по клику открыли/закрыли финкцию.
 profileOpenPopupButton.addEventListener('click', () => openPopup(popupEdit));
-popupCloseButton.addEventListener('click', () => closePopup(popupEdit));
 
 function createCard(card){ //Локальные переменые в функции клонирования карточек.
   const cardElement = cards.cloneNode(true);
@@ -181,35 +176,19 @@ enableCardValidation({
   disabledCardButtonClass: 'popup__seve_disabled',
 });
 
-
-const popupCloseClickFormProfile = document.querySelector('.popup_type_profile-edit');
-const popupCloseClickFormCard = document.querySelector('.popup_type_cards-edit');
-const popupCloseClickFormImge = document.querySelector('.popup_type_imge-edit');
-const popupContainer = document.querySelector('.popup__container');
-
-function popupCloseForm(evt) { 
-  if(evt.target === popupCloseClickFormProfile) { // Если цель клика - фон, то:
-    popupCloseClickFormProfile.classList.remove('popup_opened'); // Убираем активный класс с фона
-    popupContainer.classList.remove('popup_opened'); // И с окна
+//Закрывает попап по темной силе и по клику на крестику.
+document.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__imge-close')) {
+    closePopup(popupEdit);
+    closePopup(popupCards);
+    closePopup(popupImg);
   }
-  if(evt.target === popupCloseClickFormCard) { // Если цель клика - фон, то:
-    popupCloseClickFormCard.classList.remove('popup_opened'); // Убираем активный класс с фона
-    popupContainer.classList.remove('popup_opened'); // И с окна
-  }
-  if(evt.target === popupCloseClickFormImge) { // Если цель клика - фон, то:
-    popupCloseClickFormImge.classList.remove('popup_opened'); // Убираем активный класс с фона
-    popupContainer.classList.remove('popup_opened'); // И с окна
-  }
+});
 
-}
-document.addEventListener('click', popupCloseForm); // Вешаем обработчик на весь документ
-
-//Закрыли кнопкой Esc
-function doSomething(evt) {
+//закрывае попап по кнопки Esc.
+document.addEventListener('keydown', (evt) => {
   if (evt.code === 'Escape') {
-  //функция закрытия окна
-  popupCloseClickFormProfile.classList.remove('popup_opened');
-  popupCloseClickFormCard.classList.remove('popup_opened');
-  popupCloseClickFormImge.classList.remove('popup_opened');
+    const popupActive = document.querySelector('.popup_opened');
+    closePopup(popupActive);
   }
-} 
+});
