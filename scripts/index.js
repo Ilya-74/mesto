@@ -20,15 +20,27 @@ const popupEdit = document.querySelector('.popup_type_profile-edit');
 const popupImg = document.querySelector('.popup_type_imge-edit');
 const cards = document.querySelector('.cards').content;
 const list = document.querySelector('.list');
+const popupPhoto = document.querySelector('.popup__photo');
+const popupPhotoCaption = document.querySelector('.popup__photo-caption')
 
 //Дефолтная функция открыть PopUp.
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeEsc);
 }
 //Дефолтная функция Закрыть PopUp.
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeEsc);
 }
+
+//закрывае попап по кнопки Esc.
+function closeEsc(evt) {
+  if (evt.code === 'Escape') {
+    const popupActive = document.querySelector('.popup_opened');
+    closePopup(popupActive);
+  }
+};
 
 //функция выполняет открытия попап карточки.
 function openPopupAdd() {
@@ -46,7 +58,7 @@ addCardOpenPopupButton.addEventListener('click', () => openPopup(popupCards));
 //Повесили обработчики(шорох) событий на кнопку(Крестик закрытия картинки), по клику открыли/закрыли финкцию.
 
 //Функция выполняет передачу текста между инпутами для Профиля Кусто.
-function formSubmitHandler (evt) {
+function formSubmitProfileEdit (evt) {
   evt.preventDefault(); 
   profileName.textContent = nameInput.value; 
   profileBio.textContent = jobInput.value;
@@ -55,10 +67,21 @@ function formSubmitHandler (evt) {
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-popupForm.addEventListener('submit', formSubmitHandler);
+popupForm.addEventListener('submit', formSubmitProfileEdit);
 
 //Повесили обработчики(шорох) событий на кнопки, по клику открыли/закрыли финкцию.
 profileOpenPopupButton.addEventListener('click', () => openPopup(popupEdit));
+
+//Закрывает попап по темной силе и по клику на крестику.
+document.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__imge-close')) {
+    //closePopup(popupEdit);
+    const popupActive = document.querySelector('.popup_opened'); 
+    closePopup(popupActive);
+    //closePopup(popupCards);
+    //closePopup(popupImg);
+  }
+});
 
 function createCard(card){ //Локальные переменые в функции клонирования карточек.
   const cardElement = cards.cloneNode(true);
@@ -98,9 +121,7 @@ function addItem(event) {
   document.querySelector('.popup__form-add').reset()//Очистка полей.
 }
 // Обработчик событий по клику, вызываем функцию выше.
-addCardSevePopupButton.addEventListener('click', addItem);
-
-
+addCardSevePopupButton.addEventListener('submit', addItem);
 
 //Функция лайк. 
 function addLike(e) {
@@ -112,8 +133,7 @@ function deleteCard(e) {
   e.target.closest('.card').remove();// Ссылаемся на объект инициирующий событие, и удаляем из ДОМ в котором элемент находится. 
 }
 
-const popupPhoto = document.querySelector('.popup__photo');
-const popupPhotoCaption = document.querySelector('.popup__photo-caption')
+
 // Функция карточки(Большое фото).
 function openPopupPic(data) {
   openPopup(popupImg);// Открывается попап.
@@ -124,71 +144,28 @@ function openPopupPic(data) {
 
 //===================================Валидация форм===============================================
 
-const formSubmit = (evt, popupForm) => {
+/*const formSubmit = (evt, popupForm) => {
   evt.preventDefault();
   if (popupForm.checkValidity()) {  //если форма валидная.
     popupForm.reset();//очистили поля формы.
   }
-}
+}*/
 //Функция убирает класс с ошибкой в поле.
-const setInputValid = (inputErrorClass, errorMessage, input) => {
-  errorMessage.textContent = ''; //- сообщения об ошибке.
-  input.classList.remove(inputErrorClass);//- класс с ошибкой(красное поле).
-}
-//Функция добовляет класс с ошибкой в поле.
-const setInputInvalid = (inputErrorClass, errorMessage, input) => {
-  errorMessage.textContent = input.validationMessage; //+ сообщения об ошибке.
-  input.classList.add(inputErrorClass);//+ класс с ошибкой(красное поле).
 
-}
-
-enableValidation({
-  inputSelector: '.popup__input_type',
-  inputErrorClass: 'popup__input_type_error',
-  buttonSelector: '.popup__seve_add',
-  disabledButtonClass: 'popup__seve_disabled',
-});
 
 //=========================================
 
-const formCardSubmit = (evt, popupAddForm) => {
+/*const formCardSubmit = (evt, popupAddForm) => {
   evt.preventDefault();
   if (popupAddForm.checkValidity()) {
     popupAddForm.reset();
   }
-}
-
-const setCardInputValid = (inputCardErrorClass, errorCardMessage, input) => {
-  errorCardMessage.textContent = ''; //если все хорошо, стираем ошибку.
-    input.classList.remove(inputCardErrorClass);
-
-}
-
-const setCardInputInvalid = (inputCardErrorClass, errorCardMessage, input) => {
-  errorCardMessage.textContent = input.validationMessage;//если валидация не проходит, добовляем сообщение об ошибке.
-    input.classList.add(inputCardErrorClass);
-}
-enableCardValidation({
-  formSelector: '.popup__form-add',
-  inputCardSelector: '.popup__input_card',
-  inputCardErrorClass: 'popup__input_type_error',
-  buttonCardSelector: '.popup__seve_button',
-  disabledCardButtonClass: 'popup__seve_disabled',
-});
-
-//Закрывает попап по темной силе и по клику на крестику.
-document.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__imge-close')) {
-    closePopup(popupEdit);
-    closePopup(popupCards);
-    closePopup(popupImg);
-  }
-});
+}*/
 
 //закрывае попап по кнопки Esc.
-document.addEventListener('keydown', (evt) => {
+/*document.addEventListener('keydown', (evt) => {
   if (evt.code === 'Escape') {
     const popupActive = document.querySelector('.popup_opened');
     closePopup(popupActive);
   }
-});
+});*/

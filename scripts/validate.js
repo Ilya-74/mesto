@@ -29,13 +29,12 @@ const checkButtonValidity = ({ disabledButtonClass }, popupForm, popupSeveDisabl
   }
 }
 
-function enableValidation({ formSelector, inputSelector, buttonSelector, ...rest}) {
+function enableValidation({ addSelector, inputSelector, buttonSelector, ...rest}) {
+  const popupForm = document.querySelector(addSelector)
 
     popupForm.addEventListener('submit', (evt) => formSubmit(evt, popupForm));//принимаем evt и передаем evt и форму.
     const inputs = popupForm.querySelectorAll(inputSelector);
     const popupSeveDisabled = popupForm.querySelector(buttonSelector);
-  
-  
   
     checkButtonValidity(rest, popupForm, popupSeveDisabled);
    
@@ -47,7 +46,36 @@ function enableValidation({ formSelector, inputSelector, buttonSelector, ...rest
     });
   }
 
+const setInputValid = (inputErrorClass, errorMessage, input) => {
+  errorMessage.textContent = ''; //- сообщения об ошибке.
+  input.classList.remove(inputErrorClass);//- класс с ошибкой(красное поле).
+}
+//Функция добовляет класс с ошибкой в поле.
+const setInputInvalid = (inputErrorClass, errorMessage, input) => {
+  errorMessage.textContent = input.validationMessage; //+ сообщения об ошибке.
+  input.classList.add(inputErrorClass);//+ класс с ошибкой(красное поле).
+
+}
+
+enableValidation({
+  addSelector: '.popup__form',
+  inputSelector: '.popup__input_type',
+  inputErrorClass: 'popup__input_type_error',
+  buttonSelector: '.popup__seve_add',
+  disabledButtonClass: 'popup__seve_disabled',
+});
+
 //========================================================
+const setCardInputValid = (inputCardErrorClass, errorCardMessage, input) => {
+  errorCardMessage.textContent = ''; //если все хорошо, стираем ошибку.
+    input.classList.remove(inputCardErrorClass);
+
+}
+
+const setCardInputInvalid = (inputCardErrorClass, errorCardMessage, input) => {
+  errorCardMessage.textContent = input.validationMessage;//если валидация не проходит, добовляем сообщение об ошибке.
+    input.classList.add(inputCardErrorClass);
+}
 
 const checkCardInputValidity = ({ inputCardErrorClass }, popupAddForm, input) => {
   const errorCardMessage = popupAddForm.querySelector(`#error-${input.id}`);
@@ -67,7 +95,7 @@ const setCardButtonValid = (disabledCardButtonClass, button) => {
 
 const setCardButtonInvalid = (disabledCardButtonClass, button) => {
   button.setAttribute('disabled', '');
-    button.classList.add('popup__seve_disabled');  //Неактивная кнопка после сохранения карточки.
+    button.classList.add(disabledCardButtonClass);  //Неактивная кнопка после сохранения карточки.
 
 }
 
@@ -82,7 +110,7 @@ const checkCardButtonValidity = ({ disabledCardButtonClass },popupAddForm, butto
 function enableCardValidation({ formSelector, inputCardSelector, buttonCardSelector, ...rest }) {
   const popupAddForm = document.querySelector(formSelector);
 
-  popupAddForm.addEventListener('submite', (evt) => formCardSubmit(evt, popupAddForm));
+  popupAddForm.addEventListener('submit', (evt) => formCardSubmit(evt, popupAddForm));
   const inputsCard = popupAddForm.querySelectorAll(inputCardSelector);
   const button = popupAddForm.querySelector(buttonCardSelector)
   
@@ -100,3 +128,11 @@ function enableCardValidation({ formSelector, inputCardSelector, buttonCardSelec
     });
   });
 }
+
+enableCardValidation({
+  formSelector: '.popup__form-add',
+  inputCardSelector: '.popup__input_card',
+  inputCardErrorClass: 'popup__input_type_error',
+  buttonCardSelector: '.popup__seve_button',
+  disabledCardButtonClass: 'popup__seve_disabled',
+});
