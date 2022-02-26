@@ -23,6 +23,8 @@ const list = document.querySelector('.list');
 const popupPhoto = document.querySelector('.popup__photo');
 const popupPhotoCaption = document.querySelector('.popup__photo-caption')
 
+const popupAddCard = document.querySelector('.popup__form-add');
+
 //Дефолтная функция открыть PopUp.
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -44,7 +46,7 @@ function closeEsc(evt) {
 
 //функция выполняет открытия попап карточки.
 function openPopupAdd() {
-  openPopup(popupCards);//Выполнили открытие попап. 
+  openPopup(popupCards);//Выполнили открытие попап.
   //inputCardName.value = "";//Передаем инпуты в попап, для отображения.
   //inputCardLink.value = "";
 }
@@ -53,14 +55,19 @@ function closePopupAdd() {
   closePopup(popupCards);//Выполнили закрыти попап.
 }
 //Повесили обработчики(шорох) событий на кнопки, по клику открыли/закрыли финкцию.
-addCardOpenPopupButton.addEventListener('click', () => openPopup(popupCards));
+
+addCardOpenPopupButton.addEventListener('click', () => {
+  // При открытии будем дизейблить кнопку и открывать модалку
+  disableSubmitButton(addCardSevePopupButton, config);
+  openPopup(popupCards)
+});
 
 //Повесили обработчики(шорох) событий на кнопку(Крестик закрытия картинки), по клику открыли/закрыли финкцию.
 
 //Функция выполняет передачу текста между инпутами для Профиля Кусто.
 function formSubmitProfileEdit (evt) {
-  evt.preventDefault(); 
-  profileName.textContent = nameInput.value; 
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
   profileBio.textContent = jobInput.value;
 
   closePopup(popupEdit);
@@ -76,7 +83,7 @@ profileOpenPopupButton.addEventListener('click', () => openPopup(popupEdit));
 document.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__imge-close')) {
     //closePopup(popupEdit);
-    const popupActive = document.querySelector('.popup_opened'); 
+    const popupActive = document.querySelector('.popup_opened');
     closePopup(popupActive);
     //closePopup(popupCards);
     //closePopup(popupImg);
@@ -87,7 +94,7 @@ function createCard(card){ //Локальные переменые в функц
   const cardElement = cards.cloneNode(true);
   const cardImages = cardElement.querySelector('.card__image');
   const cardTitle = cardElement.querySelector('.card__title');
-  
+
   //Лайк - Нашли элемент и додавили обработчик событий по клику.
   const likeActive = cardElement.querySelector('.card__vector');
   likeActive.addEventListener('click', addLike);
@@ -107,13 +114,13 @@ function createCard(card){ //Локальные переменые в функц
   return cardElement;
 }
 // Функция вставляет карточку в начало.
-function renderCard(card) { 
-  list.prepend(createCard(card)); 
-} 
+function renderCard(card) {
+  list.prepend(createCard(card));
+}
 // Рендерим каждый элемент в массиве.
 initialCards.forEach(renderCard);
 
-// Функция генерирует событие, передачи информации, из полей попап на страницу.  
+// Функция генерирует событие, передачи информации, из полей попап на страницу.
 function addItem(event) {
   event.preventDefault();
   closePopupAdd();
@@ -121,16 +128,17 @@ function addItem(event) {
   document.querySelector('.popup__form-add').reset()//Очистка полей.
 }
 // Обработчик событий по клику, вызываем функцию выше.
-addCardSevePopupButton.addEventListener('submit', addItem);
+// submit - это событие формы, а не кнопки, потоку подписываться нужно на форме
+popupAddCard.addEventListener('submit', addItem);
 
-//Функция лайк. 
+//Функция лайк.
 function addLike(e) {
   e.target.classList.toggle('card__vector_active');// Ссылаемся на объект инициирующий событие.
 }
 
 //Функция удаляет карточку.
 function deleteCard(e) {
-  e.target.closest('.card').remove();// Ссылаемся на объект инициирующий событие, и удаляем из ДОМ в котором элемент находится. 
+  e.target.closest('.card').remove();// Ссылаемся на объект инициирующий событие, и удаляем из ДОМ в котором элемент находится.
 }
 
 
@@ -141,31 +149,3 @@ function openPopupPic(data) {
   popupPhoto.alt = data.name;//Назване если картинка не отобразилась.
   popupPhotoCaption.textContent = data.name;// подпись к картинке.
 }
-
-//===================================Валидация форм===============================================
-
-/*const formSubmit = (evt, popupForm) => {
-  evt.preventDefault();
-  if (popupForm.checkValidity()) {  //если форма валидная.
-    popupForm.reset();//очистили поля формы.
-  }
-}*/
-//Функция убирает класс с ошибкой в поле.
-
-
-//=========================================
-
-/*const formCardSubmit = (evt, popupAddForm) => {
-  evt.preventDefault();
-  if (popupAddForm.checkValidity()) {
-    popupAddForm.reset();
-  }
-}*/
-
-//закрывае попап по кнопки Esc.
-/*document.addEventListener('keydown', (evt) => {
-  if (evt.code === 'Escape') {
-    const popupActive = document.querySelector('.popup_opened');
-    closePopup(popupActive);
-  }
-});*/

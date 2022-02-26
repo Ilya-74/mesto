@@ -37,9 +37,9 @@
               <h3 class="popup__title">Редактировать профиль</h3>
                 <form class="popup__form" name="myForm" novalidate>
                   <input id="username" required class="popup__input popup__input_type popup__input_type_name" minlength="2" maxlength="40" name="name" type="text" value="Жак-Ив Кусто" placeholder="Имя">
-                    <span id="error-username" class="error-message error-message_visible error-message_type_username"></span>
+                    <span class="error-username error-message"></span>
                   <input id="userbio" required class="popup__input popup__input_type popup__input_type_bio" minlength="2" maxlength="200" name="bio" type="text" value="Исследователь океана" placeholder="О себе">
-                    <span id="error-userbio" class="error-message error-message_visible error-message_type_userbio"></span>
+                    <span class="error-userbio error-message"></span>
                   <button class="popup__seve popup__seve_add" aria-label="Seve" type="submit">Сохранить</button>
                 </form>
         </div>
@@ -53,9 +53,9 @@
               <h3 class="popup__title">Новое место</h3>
                 <form class="popup__form popup__form-add" name="myForm" novalidate>
                   <input id="cardname" required class="popup__input popup__input_card popup__input_card_name" minlength="2" maxlength="30" type="text" placeholder="Название">
-                  <span id="error-cardname" class="error-message error-message_visible error-message_type_cardname"></span>
+                  <span class="error-cardname error-message"></span>
                   <input id="cardlink" required class="popup__input popup__input_card popup__input_card_link" name="link" type="url" placeholder="Ссылка на картинку">
-                  <span id="error-cardlink" class="error-message error-message_visible error-message_type_cadrname"></span>
+                  <span class="error-cardlink error-message"></span>
                   <button class="popup__seve popup__seve_card popup__seve_button" aria-label="Seve" type="submit">Создать</button>
                 </form>
         </div>
