@@ -1,11 +1,11 @@
-import { openPopupPic } from './index.js';
+//import { openPopupPic } from './index.js';
 
 export class Card {
-  constructor(data, selectorTemplateCard) {
+  constructor(data, selectorTemplateCard, handleImageClick) {
     this._name = data.name;
     this._link = data.link;
     this._selectorTemplateCard = selectorTemplateCard;
-    this._openPopupPic = openPopupPic;
+    this._handleImageClick = handleImageClick;
   }
 
   _handleLike = () => {
@@ -36,9 +36,9 @@ export class Card {
   }
 
   _setEvtListeners() {
-    this._image.addEventListener("click", () => {
-      this._openPopupPic(this._name, this._link);
-    })
+    this._element.querySelector(".card__image")
+      .addEventListener('click', () => this._handleImageClick())
+
     this._likeButton.addEventListener('click', this._handleLike)
     this._deleteButton.addEventListener('click', this._handleDeleteCard)
 
