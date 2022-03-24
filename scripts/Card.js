@@ -30,7 +30,7 @@ export class Card {
     this._element.querySelector(".card__title").textContent = this._name;
     this._image = this._element.querySelector(".card__image");
     this._image.src = this._link;
-    this._image.alt = this._name;
+    //this._image.alt = this._name;
     this._setListeners();
     return this._element;
   }

@@ -25,12 +25,11 @@ export class Popup {
     }
 
     setEventListeners() {
-        const closeButton = this._popup.querySelector('.popup__imge-close')
 
         this._popup.addEventListener('click', (event) => {
             if (
                 event.target.classList.contains('popup') | 
-                event.target.classList.contains(closeButton)
+                event.target.classList.contains('popup__imge-close')
                 ) {
                     this.close()
                 }
