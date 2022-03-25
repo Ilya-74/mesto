@@ -1,11 +1,9 @@
-//import { openPopupPic } from './index.js';
-
 export class Card {
   constructor(data, selectorTemplateCard, handleImageClick) {
     this._name = data.name;
     this._link = data.link;
     this._selectorTemplateCard = selectorTemplateCard;
-    this._handleImageClick = handleImageClick;
+    //this._handleImageClick = handleImageClick;
   }
 
   _handleLike = () => {
@@ -41,7 +39,6 @@ export class Card {
 
     this._likeButton.addEventListener('click', this._handleLike)
     this._deleteButton.addEventListener('click', this._handleDeleteCard)
-
   }
 
   //Попап, лайк, корзина.

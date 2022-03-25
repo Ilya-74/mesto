@@ -8,7 +8,6 @@ export class PopupWithImage extends Popup {
         image.src = link
         caption.textContent = text
 
-
         super.open()
     }
 }
