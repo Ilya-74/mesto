@@ -3,7 +3,7 @@ export class Card {
     this._name = data.name;
     this._link = data.link;
     this._selectorTemplateCard = selectorTemplateCard;
-    //this._handleImageClick = handleImageClick;
+    this._handleImageClick = handleImageClick;
   }
 
   _handleLike = () => {
