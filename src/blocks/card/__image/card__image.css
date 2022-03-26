@@ -10,4 +10,9 @@
     overflow: hidden;
     color: white;
     text-indent: 100%;
+    transition: all 0.5s ease;
+}
+.card__image:hover {
+    box-shadow: 0 0 15px #000;
+    transition: all 0.8s ease;
 }

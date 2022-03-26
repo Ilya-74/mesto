@@ -13,6 +13,7 @@ export class Card {
   //Функция удаляет карточку.
   _handleDeleteCard = () => {
     this._element.remove();
+    this._element = null;
   }
 
   //копия template
