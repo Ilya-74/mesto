@@ -5,6 +5,32 @@ import { Section } from './Section.js';
 import { PopupWithImage } from './PopupWithImage.js';
 import { PopupWithForm } from './PopupWithForm.js';
 import { UserInfo } from './UserInfo.js';
+import { api } from './Api.js';
+
+let userId
+
+api.getProfile()
+  .then(res => {
+    console.log(res)
+    userInfo.setUserInfo(res.name, res.about)
+
+    userId = res.id
+})
+
+api.getInitialCards()
+  .then(cardList => {
+    cardList.forEach(data => {
+      const card = renderCard({
+        name: data.name,
+        link: data.link,
+        likes: data.likes,
+        id: data.id,
+        userId: userId,
+        ownerId: data.owner._id
+      });
+      section.addItem(card)
+    })
+  })
 
 //Объявлены переменые не переиспользуемые.
 const profileOpenPopupButton = document.querySelector('.profile__edit-button');
@@ -28,24 +54,51 @@ const validationConfig = {
 
 const submitFormEditProfile = (data) => {
   const {name, bio} = data
-  userInfo.setUserInfo(name, bio)
-  editProfilePopup.close();
-}
+
+  api.editProfile(name, bio)
+    .then(() => {
+      userInfo.setUserInfo(name, bio)
+      editProfilePopup.close()
+    })
+};
 
 const submitFormAddCard = (data) => {
-  const card = renderCard({
-    name: data['cardname'],
-    link: data.link
-  });
-
-  section.addItem(card);
-  addCardPopup.close();
+  api.addCard(data['cardname'], data.link)
+    .then(res => {
+      const card = renderCard({
+        name: res.name,
+        link: res.link,
+        likes: res.likes,
+        id: res.id,
+        userId: userId,
+        ownerId: res.owner._id
+      })
+      section.addItem(card);
+      addCardPopup.close();
+    })
 }
 
 const createCard = (data) => {
-  const card = new Card(data, '.cards', () => {
-    imagePopup.open(data.name, data.link)
-  });
+  const card = new Card(
+      data,
+      '.cards', 
+      () => {
+        imagePopup.open(data.name, data.link)
+      },
+      (id) => {
+        confirmPopup.open()
+        confirmPopup.changeSubmitHandler(() => {
+          api.deleteCard(id)
+            .then(res => {
+              card.deleteCard();
+              confirmPopup.close();
+            })
+        })
+      },
+      () => {
+        console.log('')
+      }
+    );
   return card.createCard();
 }
 
@@ -69,10 +122,14 @@ profileOpenPopupButton.addEventListener('click', () => {
 
 const formElementAddValidator = new FormValidator(validationConfig, popupAddCard);
 const formElementEditValidator = new FormValidator(validationConfig, popupEditForm);
-const section = new Section({ items: initialCards, renderer: renderCard }, '.cards');
+const section = new Section({ items: [], renderer: renderCard }, '.cards');
 const imagePopup = new PopupWithImage('.popup_type_imge-edit');
 const addCardPopup = new PopupWithForm('.popup_type_cards-edit', submitFormAddCard);
 const editProfilePopup = new PopupWithForm('.popup_type_profile-edit', submitFormEditProfile);
+
+const confirmPopup = new PopupWithForm('.popup_type_delete-confirm');
+
+
 const userInfo = new UserInfo({ 
   profileNameSelector: '.profile__name',
   profileBioSelector: '.profile__bio' 
@@ -81,7 +138,8 @@ const userInfo = new UserInfo({
 
 formElementAddValidator.enableValidation();
 formElementEditValidator.enableValidation();
-imagePopup.setEventListeners()
-addCardPopup.setEventListeners()
-editProfilePopup.setEventListeners()
-section.renderItems()
+imagePopup.setEventListeners();
+addCardPopup.setEventListeners();
+editProfilePopup.setEventListeners();
+confirmPopup.setEventListeners();
+section.renderItems();

@@ -19,10 +19,10 @@
             <section class="profile">
                 <div class="profile__avatar"></div>
                 <div class="profile__info">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <h1 class="profile__name"></h1>
                     <button class="profile__edit-button" type="button" aria-label="editOpen"><img
                             src="<%=require('./images/Vec(2).svg')%>" alt="Вектор"></button>
-                    <p class="profile__bio">Исследователь океана</p>
+                    <p class="profile__bio"></p>
                 </div>
                 <button class="profile__button-add" type="button" aria-label="addOpen">
                     <img src="<%=require('./images/vec.svg')%>"
@@ -74,6 +74,19 @@
         </div>
     </section>
 
+    <section class="popup popup_type_delete-confirm">
+        <div class="popup__container">
+            <button class="popup__close" aria-label="Close" type="button">
+                <img class="popup__imge-close" src="<%=require('./images/CloseIcon.svg')%>" alt="Закрыть">
+            </button>
+            <h3 class="popup__title popup__title_delete-confirm">Вы уверены?</h3>
+            <form class="popup__form" name="delCardForm" novalidate>
+                <button class="popup__seve popup__seve_delete-confirm" aria-label="delete"
+                    type="submit">Да</button>
+            </form>
+        </div>
+    </section>
+
     <section class="popup popup_type_imge-edit">
         <figure class="popup__imge-open">
             <button class="popup__close" type="button">
@@ -92,6 +105,7 @@
             <div class="card__caption">
                 <h2 class="card__title"></h2>
                 <button class="card__vector" type="button"></button>
+                <span class="card__vector-count"></span>
             </div>
         </div>
     </template>
