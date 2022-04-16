@@ -1,3 +1,8 @@
 .card__vector_active {
+    width: 22px;
+    height: 19px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
     background-image: url(../../../../images/Union.svg);
 }

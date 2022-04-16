@@ -17,7 +17,7 @@
         </header>
         <main class="content">
             <section class="profile">
-                <div class="profile__avatar"></div>
+                <div class="profile__avatar-add"><img class="profile__avatar" src="#" alt="аватар"></div>
                 <div class="profile__info">
                     <h1 class="profile__name"></h1>
                     <button class="profile__edit-button" type="button" aria-label="editOpen"><img
@@ -87,6 +87,20 @@
         </div>
     </section>
 
+    <section class="popup popup_type_avatar-edit">
+        <div class="popup__container">
+          <button class="popup__close" type="button"></button>
+          <h3 class="popup__title">Обновить аватар</h3>
+          <form class="popup__form popup__form-avatar" name="form" novalidate>
+            <input id="avatarlink" class="popup__input popup__input-avatar"
+                name="link" type="url"  placeholder="Ссылка на картинку" required>
+            <span class="error-avatarlink error-message"></span>
+            <button class="popup__seve popup__seve_card" 
+                type="submit">Сохранить</button>
+          </form>
+        </div>
+      </section>
+
     <section class="popup popup_type_imge-edit">
         <figure class="popup__imge-open">
             <button class="popup__close" type="button">
@@ -104,8 +118,10 @@
             <img class="card__image" src="#" alt="Картинка">
             <div class="card__caption">
                 <h2 class="card__title"></h2>
-                <button class="card__vector" type="button"></button>
-                <span class="card__vector-count"></span>
+               <div class="card__vector-box">
+                  <button class="card__vector" type="button"></button>
+                  <span class="card__vector-count"></span>
+               </div>
             </div>
         </div>
     </template>
