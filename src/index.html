@@ -89,7 +89,9 @@
 
     <section class="popup popup_type_avatar-edit">
         <div class="popup__container">
-          <button class="popup__close" type="button"></button>
+          <button class="popup__close" type="button">
+            <img class="popup__imge-close" src="<%=require('./images/CloseIcon.svg')%>" alt="Закрыть">
+          </button>
           <h3 class="popup__title">Обновить аватар</h3>
           <form class="popup__form popup__form-avatar" name="form" novalidate>
             <input id="avatarlink" class="popup__input popup__input-avatar"
