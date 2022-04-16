@@ -2,13 +2,13 @@
 import '../pages/index.css';
 
 import * as constantes from '../scripts/utils/constants';
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { Section } from './Section.js';
-import { PopupWithImage } from './PopupWithImage.js';
-import { PopupWithForm } from './PopupWithForm.js';
-import { UserInfo } from './UserInfo.js';
-import { api } from './Api.js';
+import { Card } from '../scripts/components/Card.js';
+import { FormValidator } from '../scripts/components/FormValidator.js';
+import { Section } from '../scripts/components/Section.js';
+import { PopupWithImage } from '../scripts/components/PopupWithImage.js';
+import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
+import { UserInfo } from '../scripts/components/UserInfo.js';
+import { api } from '../scripts/components/Api.js';
 
 let userId
 
